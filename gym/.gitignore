@@ -1,0 +1,29 @@
+# Environment and build
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+
+# Data files
+data/*.pkl
+data/*.npz
+data/*.hdf5
+
+# Experiment outputs
+results/
+logs/
+wandb/
+*.log
+*.csv
+*.mp4
+
+# Environments
+.env/
+.venv/
+conda_envs/
+storage/
+scratch/
+
+# Dependencies cloned locally
+d4rl/
