@@ -1,39 +1,25 @@
 
-# Decision Transformer
+# Fork of Decision Transformer of the course CSE 8803 at Georgia Tech
 
 Lili Chen\*, Kevin Lu\*, Aravind Rajeswaran, Kimin Lee, Aditya Grover, Michael Laskin, Pieter Abbeel, Aravind Srinivas†, and Igor Mordatch†
 
-\*equal contribution, †equal advising
+# 1) Create & activate
+conda env create -f conda_env.yml
+conda activate decision-transformer-gym
 
-A link to our paper can be found on [arXiv](https://arxiv.org/abs/2106.01345).
+# 2) Install MuJoCo 2.1 runtime (headless-safe)
+mkdir -p ~/.mujoco && cd ~/.mujoco
+wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz
+tar -xf mujoco210-linux-x86_64.tar.gz
+echo 'export MUJOCO_PY_MUJOCO_PATH=$HOME/.mujoco/mujoco210' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.mujoco/mujoco210/bin' >> ~/.bashrc
+echo 'export MUJOCO_GL=egl' >> ~/.bashrc
+source ~/.bashrc
 
-## Overview
-
-Official codebase for [Decision Transformer: Reinforcement Learning via Sequence Modeling](https://sites.google.com/berkeley.edu/decision-transformer).
-Contains scripts to reproduce experiments.
-
-![image info](./architecture.png)
-
-## Instructions
-
-We provide code in two sub-directories: `atari` containing code for Atari experiments and `gym` containing code for OpenAI Gym experiments.
-See corresponding READMEs in each folder for instructions; scripts should be run from the respective directories.
-It may be necessary to add the respective directories to your PYTHONPATH.
-
-## Citation
-
-Please cite our paper as:
-
-```
-@article{chen2021decisiontransformer,
-  title={Decision Transformer: Reinforcement Learning via Sequence Modeling},
-  author={Lili Chen and Kevin Lu and Aravind Rajeswaran and Kimin Lee and Aditya Grover and Michael Laskin and Pieter Abbeel and Aravind Srinivas and Igor Mordatch},
-  journal={arXiv preprint arXiv:2106.01345},
-  year={2021}
-}
-```
-
-Note: this is not an official Google or Facebook product.
+# 3) Quick sanity checks
+python -c "import torch; print('torch', torch.__version__, 'cuda?', torch.cuda.is_available())"
+python -c "import gym; import mujoco_py; print('gym', gym.__version__, 'mujoco-py', mujoco_py.__version__)"
+python -c "import transformers, tokenizers; print('hf', transformers.__version__, 'tok', tokenizers.__version__)"
 
 ## License
 
