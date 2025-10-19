@@ -1,13 +1,15 @@
+# 🧠 Decision Transformer
 
-# Fork of Decision Transformer of the course CSE 8803 at Georgia Tech
+Fork of [Kostrikov et al.](https://github.com/kzl/decision-transformer) for **CSE 8803 DRL Gatech Project**.  
 
-Lili Chen\*, Kevin Lu\*, Aravind Rajeswaran, Kimin Lee, Aditya Grover, Michael Laskin, Pieter Abbeel, Aravind Srinivas†, and Igor Mordatch†
+## ⚙️ Environment Setup
 
-# 1) Create & activate
+```bash
+# 1. Create and activate environment
 conda env create -f conda_env.yml
 conda activate decision-transformer-gym
 
-# 2) Install MuJoCo 2.1 runtime (headless-safe)
+# 2. Install MuJoCo 2.1 (no license required)
 mkdir -p ~/.mujoco && cd ~/.mujoco
 wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz
 tar -xf mujoco210-linux-x86_64.tar.gz
@@ -16,11 +18,12 @@ echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.mujoco/mujoco210/bin' >> ~/
 echo 'export MUJOCO_GL=egl' >> ~/.bashrc
 source ~/.bashrc
 
-# 3) Quick sanity checks
-python -c "import torch; print('torch', torch.__version__, 'cuda?', torch.cuda.is_available())"
-python -c "import gym; import mujoco_py; print('gym', gym.__version__, 'mujoco-py', mujoco_py.__version__)"
-python -c "import transformers, tokenizers; print('hf', transformers.__version__, 'tok', tokenizers.__version__)"
+# 3. Verify setup
+python -c "import torch; print('Torch', torch.__version__, 'CUDA?', torch.cuda.is_available())"
+python -c "import mujoco_py, gym; print('Gym', gym.__version__, 'MuJoCo', mujoco_py.__version__)"
 
-## License
-
-MIT
+## Downloading datasets Datasets are stored in the data directory. Install the [D4RL repo](https://github.com/rail-berkeley/d4rl), following the instructions there. Then, run the following script in order to download the datasets and save them in our format:
+python download_d4rl_datasets.py
+## Example usage Experiments can be reproduced with the following:
+python experiment.py --env hopper --dataset medium --model_type dt
+Adding -w True will log results to Weights and Biases.
